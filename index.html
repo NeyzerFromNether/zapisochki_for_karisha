@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>маленькие штуки для тебя</title>
+  <style>
+    :root{
+      --night:#242331;
+      --night-2:#303047;
+      --paper:#fffaf2;
+      --ink:#34313b;
+      --lilac:#bdb4ff;
+      --pink:#ffa8c2;
+      --peach:#ffc982;
+      --muted:#cdc7df;
+      --shadow:0 14px 35px rgba(11,10,22,.25);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-width:320px;
+      color:var(--paper);
+      font-family:"Trebuchet MS","Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 11% 12%,rgba(189,180,255,.15),transparent 25rem),
+        radial-gradient(circle at 88% 31%,rgba(255,168,194,.11),transparent 23rem),
+        linear-gradient(145deg,#252335 0%,#1d1d29 100%);
+      overflow-x:hidden;
+    }
+    button{font:inherit}
+    .stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}
+    .stars i{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;opacity:.55;animation:blink 3.8s infinite ease-in-out}
+    .stars i:nth-child(1){left:6%;top:11%;animation-delay:.2s}.stars i:nth-child(2){left:19%;top:36%;animation-delay:1.1s}.stars i:nth-child(3){left:32%;top:7%;animation-delay:2.3s}.stars i:nth-child(4){left:46%;top:18%;animation-delay:.5s}.stars i:nth-child(5){left:63%;top:8%;animation-delay:1.7s}.stars i:nth-child(6){left:78%;top:22%;animation-delay:2.8s}.stars i:nth-child(7){left:93%;top:8%;animation-delay:1.3s}.stars i:nth-child(8){left:9%;top:73%;animation-delay:2s}.stars i:nth-child(9){left:26%;top:89%;animation-delay:.8s}.stars i:nth-child(10){left:72%;top:74%;animation-delay:2.7s}.stars i:nth-child(11){left:91%;top:87%;animation-delay:.4s}.stars i:nth-child(12){left:53%;top:94%;animation-delay:1.6s}
+    @keyframes blink{0%,100%{opacity:.18;transform:scale(.7)}50%{opacity:.9;transform:scale(1.25)}}
+
+    .wrap{width:min(100% - 36px,900px);margin:auto;padding:68px 0 70px}
+    header{text-align:center;max-width:650px;margin:0 auto 43px}
+    .eyebrow{margin:0 0 15px;color:var(--muted);font-size:12px;letter-spacing:1.7px;text-transform:uppercase}
+    h1{font-size:clamp(42px,9vw,78px);letter-spacing:-3.3px;line-height:.94;margin:0;font-weight:800}
+    h1 span{color:var(--pink);display:inline-block;transform:rotate(-2deg)}
+    .intro{font-size:clamp(17px,3vw,21px);line-height:1.55;max-width:510px;margin:26px auto 0;color:#eeebf4}
+    .scribble{width:175px;height:22px;margin:14px auto 0;display:block}
+
+    .emergency{
+      position:relative;
+      margin:0 auto 56px;
+      max-width:620px;
+      padding:28px 30px 30px;
+      color:var(--ink);
+      background:var(--paper);
+      border-radius:22px 19px 25px 17px;
+      box-shadow:var(--shadow);
+      transform:rotate(-.5deg);
+    }
+    .emergency:before,.emergency:after{content:"";position:absolute;background:rgba(255,201,130,.48);width:110px;height:25px;top:-12px}
+    .emergency:before{left:18px;transform:rotate(-5deg)}.emergency:after{right:20px;transform:rotate(4deg)}
+    .emergency h2{font-size:27px;letter-spacing:-1px;margin:0 0 6px}.emergency p{margin:0 0 21px;line-height:1.45;font-size:17px}
+    .big-button{border:0;border-radius:999px;background:var(--night);color:white;cursor:pointer;padding:15px 22px;font-weight:700;font-size:16px;box-shadow:0 5px 0 #11111c;transition:.17s transform,.17s box-shadow}
+    .big-button:hover{transform:translateY(-2px)}.big-button:active{transform:translateY(4px);box-shadow:0 1px 0 #11111c}
+
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:0 3px 21px}.section-title h2{font-size:26px;letter-spacing:-1px;margin:0}.section-title p{color:var(--muted);font-size:14px;margin:0;text-align:right}
+    .notes{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;align-items:start}
+    .note{
+      position:relative;min-height:178px;padding:21px 18px 17px;
+      text-align:left;border:0;cursor:pointer;color:var(--ink);background:var(--paper);box-shadow:0 8px 19px rgba(0,0,0,.2);
+      border-radius:7px 18px 10px 16px;transition:transform .22s ease,box-shadow .22s ease;overflow:hidden;
+    }
+    .note:after{content:"";position:absolute;width:88px;height:24px;background:rgba(189,180,255,.56);top:-9px;left:calc(50% - 44px);transform:rotate(-2deg)}
+    .note:hover{transform:translateY(-6px) rotate(1deg);box-shadow:0 15px 27px rgba(0,0,0,.29)}
+    .note:nth-child(3n+2){background:#fff5f8;transform:rotate(.8deg)}.note:nth-child(3n+3){background:#fff9e8;transform:rotate(-.7deg)}
+    .note:nth-child(3n+2):hover{transform:translateY(-6px) rotate(-.2deg)}.note:nth-child(3n+3):hover{transform:translateY(-6px) rotate(.2deg)}
+    .note-number{display:block;color:#a094b9;font-size:12px;letter-spacing:1.2px;margin:5px 0 15px;text-transform:uppercase}.note-name{display:block;font-size:22px;font-weight:800;line-height:1.05;letter-spacing:-.8px}.open-label{position:absolute;bottom:16px;left:18px;font-size:13px;color:#806b83;border-bottom:1px dashed currentColor;padding-bottom:2px}
+
+    dialog{position:fixed;inset:0;max-width:none;width:100%;height:100%;margin:0;padding:14px;border:0;background:transparent;color:var(--ink);align-items:center;justify-content:center}
+    dialog[open]{display:flex}
+    dialog::backdrop{background:rgba(9,8,17,.74);backdrop-filter:blur(3px)}
+    .letter{position:relative;width:min(100%,580px);background:var(--paper);padding:48px 39px 37px;border-radius:10px 21px 14px 18px;box-shadow:0 25px 80px rgba(0,0,0,.4);overflow:hidden}
+    .letter:before{content:"";position:absolute;inset:0;opacity:.36;pointer-events:none;background:repeating-linear-gradient(transparent 0,transparent 34px,#d9d3c9 35px,#d9d3c9 36px)}
+    .close{position:absolute;right:15px;top:12px;z-index:5;pointer-events:auto;border:0;background:transparent;color:#867d8e;font-size:30px;line-height:1;cursor:pointer;padding:4px 9px}.close:hover{color:var(--ink)}
+    .letter .count{position:relative;color:#968bab;font-size:12px;letter-spacing:1.3px;text-transform:uppercase;margin:0 0 16px}.letter h3{position:relative;font-size:34px;line-height:1;margin:0 0 25px;letter-spacing:-1.6px}.letter p{position:relative;font-size:19px;line-height:1.48;margin:0 0 17px}.letter p:last-of-type{margin-bottom:0}.little-heart{position:absolute;right:37px;bottom:23px;color:var(--pink);font-size:26px;transform:rotate(-12deg)}
+
+    .bottom{margin:64px auto 0;text-align:center;max-width:590px}.bottom p{font-size:19px;line-height:1.55;margin:0;color:#eeeaf5}.bottom strong{color:var(--pink)}
+    .heart{background:none;border:0;color:var(--pink);font-size:35px;cursor:pointer;margin-top:10px;transition:transform .2s}.heart:hover{transform:scale(1.2) rotate(8deg)}
+    .float{position:fixed;z-index:5;pointer-events:none;color:var(--pink);font-size:21px;animation:up 1.5s ease-out forwards}@keyframes up{to{transform:translateY(-110px) rotate(23deg);opacity:0}}
+
+    @media(max-width:680px){.wrap{width:min(100% - 26px,900px);padding-top:49px}.notes{grid-template-columns:repeat(2,1fr);gap:13px}.note{min-height:157px;padding:18px 14px}.note-name{font-size:19px}.emergency{padding:25px 21px 26px}.section-title{align-items:start;flex-direction:column;gap:4px}.section-title p{text-align:left}.letter{padding:45px 25px 35px}.letter p{font-size:18px}}
+    @media(max-width:385px){.notes{grid-template-columns:1fr}.note{min-height:135px}}
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <main class="wrap">
+
+    <section>
+      <div class="section-title"><h2>ето зописочкииии</h2></div>
+      <div class="notes" id="notes"></div>
+    </section>
+
+    <section class="bottom">
+      <p>солнышко мое я <strong>всегда рядом</strong> даже если мы далеко я все равно рядом с тобой я тебя люблю очень очень сильно я с тобой я бы хотел щас обнять тебя крепко крепко и поцеловать в лобик и потом полежать вместе и порассказывать тебе какойта бредик из моей жизни</p>
+      <button class="heart" id="heart" aria-label="сердечко">♥</button>
+    </section>
+  </main>
+
+  <dialog id="messageDialog" onclick="if(event.target === this) this.close()">
+    <article class="letter">
+      <button type="button" class="close" id="closeDialog" aria-label="закрыть" onclick="document.getElementById('messageDialog').close()">×</button>
+      <p class="count" id="dialogCount"></p>
+      <h3 id="dialogTitle"></h3>
+      <p id="dialogP1"></p>
+      <p id="dialogP2"></p>
+      <span class="little-heart">♥</span>
+    </article>
+  </dialog>
+
+  <script>
+    const messages = [
+      {
+        title: "записочка 1",
+        p1: "ты у меня очень очень особенная типа я не знаю как эта нормально объяснить но ты не проса моя девушка ты еще прям мой любимый человек во всем мире",
+        p2: "мне блин безумно павезло чо однажды ты появилась в моей жизни я до сих пор иногда думаю об этом и улыбаюсь как дебил какойта"
+      },
+      {
+        title: "записочка 2",
+        p1: "я люблю твою улыбку особенно ту которая появляется внезапно когда ты сначала пыталась не смеяться а потом уже не получилось ну эта тип ты мила",
+        p2: "когда ты улыбаешься у меня будто внутри все становится на свои места хочется смотреть на тебя и думать ну вот она моя красота МОЯ ДЕВУШКА!!"
+      },
+      {
+        title: "записочка 3",
+        p1: "ты умеешь делать обычные моменты типа нашими даже прост переписка с тобой или прогулка потом почемута долго сидит у меня в голове(лана я знаю поч так происходит эта потомучта все происходит с табооой)",
+        p2: "с тобой все какта теплее и я очень хочу чтобы у нас таких обычных наших моментов было еще целая куча!!"
+      },
+      {
+        title: "записочка 4",
+        p1: "мне нравится в тебе столько мелочей что я бы мог тут наверна до утра перечислять как ты гаваришь как реагируешь как смотришь как смешно можешь возмущаться и ещо я ебень? мебумембмеуб",
+        p2: "и каждая такая мелочь для меня не мелочь вообще она про тебя а ти у меня самая любимая поетому эта не мелочь а какт по другому я незн как назвать прастите"
+      },
+      {
+        title: "записочка 5",
+        p1: "ты очень красивая и я ща не толька про внешность хотя да ты там ваще бадассная я иногда не панимаю как мне так павезло",
+        p2: "у тебя красивая душа характер твой способ тип чувствовать все ты оч оч оч красива везде"
+      },
+      {
+        title: "записочка 6",
+        p1: "я люблю слушать тебя даже когда ты рассказываешь мне какойт маленький кусочек дня который другим может показаться какимт неважным или дефолтным",
+        p2: "для меня важно все чо связано с тобой потому шо ты мне интересна целиком а не только в какието особенные моменты"
+      },
+      {
+        title: "записочка 7",
+        p1: "ты делаешь меня лучше прост тем что ты есть рядом и с тобой хочется быть добрее и лучше и вообще какимта мегамега бадассным парнем да и проса лучше как человеком",
+        p2: "спасибо тебе за это и ты ничего специально для этого не делаешь ты просто ты и этова уже многа типа только то шо ты эта ты делает меня лучше вот"
+      },
+      {
+        title: "записочка 8",
+        p1: "у тебя есть такая штука ты можешь даже молча быть очень родной(ну типа вот ощущение такое чо мы родственные души проса так ничо не делая) вот сидим рядом и вроде ничо такова не происходит а мне харашо",
+        p2: "я бы выбирал такие моменты с тобой снова и снова потому што рядом с тобой мне спокойно и понастоящему какт можно сказать уютно вот да уютна"
+      },
+      {
+        title: "записочка 9",
+        p1: "я очень горжусь табой за все чо ты делаешь за то какая ты ваще в целам",
+        p2: "может я не всегда говорю это часто но я часта смотрю на тебя и думаю вот это мая девушка ну ваще просто блина расцеловать хочу)"
+      },
+      {
+        title: "записочка 10",
+        p1: "я хочу чтоб ты всегда помнила одну важную штуку шо ты заслуживаешь много хорошего нежности заботы красивых дней и всего что заставляет тебя улыбаться",
+        p2: "а я хочу быть тем человеком каторый будет добавлять тибе этава харошего сколька сможет потому шо ты для мя очень ценная(("
+      },
+      {
+        title: "записочка 11",
+        p1: "мне нравится как ты умеешь быть собой не играть когото не притворяться и оставаться моей любимой девочкой",
+        p2: "я рад што именно мне досталась возможность знать тебя вот такой вот так близко"
+      },
+      {
+        title: "записочка 12",
+        p1: "твой смех у меня гдет отдельно в голове хранится я могу вспомнить ево и сразу становится какт приятно как будто ты уже рядом вот со мной типа всегда",
+        p2: "хочу еще миллионы раз рассмешить тебя чемнибудь тупым эта ваще самое такое крутое тип чо я ваще делал в жизни вот я все еще помню то как я верити те показал и ты смеялась и умилялась одновременна"
+      },
+      {
+        title: "записочка 13",
+        p1: "я люблю када ты пишешь мне даж если эта одно слово кружочек фотка или проста какаято ерунда которую ти увидела",
+        p2: "мне нравится чо в твоем дне есть место для мя и в моем дне всегда очень многа места для тя бебебебебееее"
+      },
+      {
+        title: "записочка 14",
+        p1: "ты у меня такая нежная и сильная одновременна я не знаю типа как ти эта делаешь но именна эта делает тя еще более невероятной для меня типа бубубу",
+        p2: "хочется беречь тебя и любоваться тобой ну типа вот мое солнышко какая же кариша у мя прекрасная типа пасматрите все а хотя.. ДРУГИМ НЕ СМОТРЕТЬ Я РЕВНУЮ!"
+      },
+      {
+        title: "записочка 15",
+        p1: "я выбрал бы тя снова вот если бы можна была отмотать все назад и выбирать занава я бы все равно пошел к тибе",
+        p2: "потому што с тобой я нашел чота свое и мне не хочется это отпускать"
+      },
+      {
+        title: "записочка 16",
+        p1: "ты не представляешь наскольк ты мне дорога иногда я проса смотрю на тебя и понимаю что люблю так сильно что даже говорить нармальн сложновата",
+        p2: "поэтому я и делаю всякие сайтики записочки и штуки хочется чтоб ты хоть немножка видела то чо у меня внутри к тебе лежит"
+      },
+      {
+        title: "записочка 17",
+        p1: "мне нравится твой голос када ты говоришь со мной када смеешься када сонная чото бормочешь все нравится!",
+        p2: "он для меня уже как свой родной звук услышу тя и сразу думаю ну все день стал лучше типа ряльна"
+      },
+      {
+        title: "записочка 18",
+        p1: "ты умеешь делать мою жизнь ярче не какимта способом а так тихонечка и кажды день хыы",
+        p2: "я очень люблю нашу жизнь с тобой( хочу еще много вечеров прогулок разговоров и всяких наших какихта приколов! а када съедемся будем ваще кажды день видеться"
+      },
+      {
+        title: "записочка 19",
+        p1: "я помню про нас много всево фотки фразы как мы кудат шли как просто сидели как ты на мя смотрела",
+        p2: "для мя эт все очень бережные воспоминания и я хочу собирать их дальше с табой многамнога шоб была"
+      },
+      {
+        title: "записочка 20",
+        p1: "ты очень мне нужна не потому што без тя ничего не существует а потому шо с тобой мир намного как сказать роднее и еще теплее!",
+        p2: "я люблю быть твоим человеком люблю когда ты моя а я твой эта самое приятное чувство на свете наверна хатя када мы съедемся будет еще лучше а када поженимся ещоооо лучше!!!!"
+      },
+      {
+        title: "записочка 21",
+        p1: "когда думаю про будущее мне очень хочец чобы ты там была чтоб мы кудат ехали спорили чо брать с собой и потом смеялись с этава",
+        p2: "мне нравится мечтать про все это именно с тобой ты в моих планах всегда самая красивая часть"
+      },
+      {
+        title: "записочка 22",
+        p1: "я люблю как ты заботишься иногда в славах иногда во взгляде иногда в какихта маленьких штучках каторые ты сама можешь не заметить но ты их делаешь)",
+        p2: "я замечаю и очень храню в себе все это тепло которое ты мне даешь( люблю тебя"
+      },
+      {
+        title: "записочка 23",
+        p1: "ты моя любимая это проста факт тут без споров типа потому што я уже все решил!",
+        p2: "и даже если бы весь мир начал спорить я бы все равно сидел и думал ну вы не знаете ее как я она вообще самаясамая!!! И ОНА МОЯ."
+      },
+      {
+        title: "записочка 24",
+        p1: "мне с табой не бывает скучно тип даже когда мы ничо не делаем все равно есть какоет особенное ощущение что все хорошо",
+        p2: "видимо потому што рядом ты а када ты рядом значит все харашо"
+      },
+      {
+        title: "записочка 25",
+        p1: "я люблю тебя не за какието достижения и не за идеальность я люблю тебя всю тваю улыбку характер смешные слава и всевсе",
+        p2: "для мя ты не набор причин ты просто моя кариша и этава достаточно чтобы сердце у мя каждый раз таяло при виде тибя"
+      },
+      {
+        title: "записочка 26",
+        p1: "ты очень много для меня значишь иногда хочется взять тебя за щечки посмотреть в глаза и шобы ты прямо почувствовала всю эту мою любовь",
+        p2: "пока могу ток писать тебе такие штуки и обнимать када рядом но знай там внутри у мя очень много тепла именно для тебя ие для когот другова!"
+      },
+      {
+        title: "записочка 27",
+        p1: "мне нравится думать что мы есть друг у друга вот правда эта как какойто мой личный бонус в жизни который я очен ценю",
+        p2: "я хочу шоб ты всегда чувствовала себя любимой патаму шо именна такой ты и являешься! очень сильно и очень понастоящему!!"
+      },
+      {
+        title: "записочка 28",
+        p1: "если бы мне дали описать мое любимое место я бы наверна сказал рядом с тобой без красивых слов просто рядом с тобой мне лучше всего",
+        p2: "где бы мы ни были если ты там со мной уже какта харашо ты мой уют ты мой дом(("
+      },
+      {
+        title: "записочка 29",
+        p1: "я очень дорожу тобой каждым днем с тобой каждым сообщением каждой нашей встречей",
+        p2: "спасибо что ты есть у меня я буду еще много раз говорить что люблю тебя"
+      },
+      {
+        title: "записочка 30",
+        p1: "это последняя записочка но моя любовь к тибе не заканчивается на ней я могу писать тебе еще сто таких и все равно не уместить все что чувствую",
+        p2: "я люблю тебя очень сильно кариш ты самая прекрасная моя девочка и я невероятно счастлив что ты у меня есть!"
+      }
+    ];
+
+    const notes = document.getElementById('notes');
+    const dialog = document.getElementById('messageDialog');
+    const title = document.getElementById('dialogTitle');
+    const count = document.getElementById('dialogCount');
+    const p1 = document.getElementById('dialogP1');
+    const p2 = document.getElementById('dialogP2');
+    let last = -1;
+
+    messages.forEach((message, i) => {
+      const card = document.createElement('button');
+      card.className = 'note';
+      card.innerHTML = `<span class="note-number">записочка ${String(i + 1).padStart(2, '0')}</span><span class="note-name">${message.title}</span><span class="open-label">открыть меня</span>`;
+      card.addEventListener('click', () => openMessage(i));
+      notes.appendChild(card);
+    });
+
+    function openMessage(index){
+      const message = messages[index];
+      last = index;
+      count.textContent = `маленькая записочка ${String(index + 1).padStart(2, '0')} из ${messages.length}`;
+      title.textContent = message.title;
+      p1.textContent = message.p1;
+      p2.textContent = message.p2;
+      dialog.showModal();
+    }
+
+    document.getElementById('randomNote').addEventListener('click', () => {
+      let next = Math.floor(Math.random() * messages.length);
+      if(messages.length > 1 && next === last) next = (next + 1) % messages.length;
+      openMessage(next);
+    });
+    document.getElementById('closeDialog').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', e => { if(e.target === dialog) dialog.close(); });
+
+    document.getElementById('heart').addEventListener('click', e => {
+      const r = e.currentTarget.getBoundingClientRect();
+      for(let i=0;i<7;i++){
+        const heart = document.createElement('span');
+        heart.className = 'float'; heart.textContent = i % 3 === 0 ? '♥' : '♡';
+        heart.style.left = `${r.left + r.width / 2 + (Math.random() - .5) * 80}px`;
+        heart.style.top = `${r.top + 15 + Math.random() * 10}px`;
+        heart.style.animationDelay = `${i * .07}s`;
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1800);
+      }
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a52944480d44c5b0',t:'MTc5MzM1MTIxNQ=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a52944480d44c5b0',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
